@@ -1,0 +1,66 @@
+public class Paciente {
+    private int id;
+    private String nome;
+    private double peso;
+    private double altura;
+    private int sexo; // 1: Masculino, 2: Feminino
+
+    public Paciente(int id, String nome, double peso, double altura, int sexo) {
+        this.id = id;
+        this.nome = nome;
+        this.peso = peso;
+        this.altura = altura;
+        this.sexo = sexo;
+    }
+
+    // Getters e Setters
+    public int getId() { return id; }
+    public String getNome() { return nome; }
+    public double getPeso() { return peso; }
+    public double getAltura() { return altura; }
+    public int getSexo() { return sexo; }
+
+    public void setNome(String nome) { this.nome = nome; }
+    public void setPeso(double peso) { this.peso = peso; }
+    public void setAltura(double altura) { this.altura = altura; }
+    public void setSexo(int sexo) { this.sexo = sexo; }
+    
+    @Override
+    public String toString() {
+        return "ID: " + id + ", Nome: " + nome + ", Peso: " + peso + ", Altura: " + altura + ", Sexo: " + sexo;
+    }
+}
+
+
+import java.util.ArrayList;
+
+public class RepositorioPacientes {
+    private ArrayList<Paciente> pacientes;
+
+    public RepositorioPacientes() {
+        this.pacientes = new ArrayList<>();
+    }
+
+    public void adicionarPaciente(Paciente paciente) {
+        pacientes.add(paciente);
+    }
+
+    public void alterarPaciente(int id, Paciente pacienteAlterado) {
+        for (int i = 0; i < pacientes.size(); i++) {
+            if (pacientes.get(i).getId() == id) {
+                pacientes.set(i, pacienteAlterado);
+                return;
+            }
+        }
+    }
+
+    public void excluirPaciente(int id) {
+        pacientes.removeIf(p -> p.getId() == id);
+    }
+
+    public void listarPacientes() {
+        for (Paciente paciente : pacientes) {
+            System.out.println(paciente);
+        }
+    }
+}
